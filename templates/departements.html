@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<h1>departements de la Région {{ code_region }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Code departements</th>
+                <th>Libellé departements</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for departement in departements %}
+            <tr>
+                <td>{{ departement.code_departement }}</td>
+                <td>{{ departement.libelle_departement }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+
+{% endblock %}

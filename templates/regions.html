@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Régions</title>
+</head>
+<body>
+    <h1>Les Régions</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Code Région</th>
+                <th>Libellé Région</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for region in regions %}
+            <tr>
+                <td>{{ region.libelle_region }}</td>
+                <td><a href="{{ url_for('view_region_details', code_region=region.code_region) }}">Voir détails</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
