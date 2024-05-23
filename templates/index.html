@@ -1,14 +1,25 @@
 {% extends 'base.html'%}
 
 {% block head %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 {% endblock %}
 
 {% block body %}
+<section id="header">
+    <a href="#"><img src="#"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="#" class="acceuil">Accueil</a></li>
+            <li><a href="#">Comparaison</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Actus</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="bannierre">
+    <img src="/static/img/bg1.jpg" alt="" class="image-pleine-largeur">
+</section>
+
 <h1>Stations</h1>
-    <ul>
-        {% for station in stations %}
-            <li>{{ station.libelle_station }} - Code: {{ station.code_station }}</li>
-        {% endfor %}
-    </ul>
 {% endblock %}
