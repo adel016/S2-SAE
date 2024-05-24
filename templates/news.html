@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='news.css') }}">
+{% endblock %}
+
+{% block body %}
+<section id="header">
+    <a href="#"><img src="#"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="#" class="acceuil">Accueil</a></li>
+            <li><a href="#">Comparaison</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Actus</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="bannierre">
+    <img src="/static/img/bg1.jpg" alt="" class="image-pleine-largeur">
+</section>
+
+<section id="actualites">
+    <div class="container">
+        <div class="article">
+            <img src="/static/img/article1.jpg" alt="Image Article 1">
+            <h2>Titre de l'Article 1</h2>
+            <p>Résumé de l'article 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+            <a href="#">Lire la suite</a>
+        </div>
+        <div class="article">
+            <img src="/static/img/article2.jpg" alt="Image Article 2">
+            <h2>Titre de l'Article 2</h2>
+            <p>Résumé de l'article 2. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+            <a href="#">Lire la suite</a>
+        </div>
+        <div class="article">
+            <img src="/static/img/article3.jpg" alt="Image Article 3">
+            <h2>Titre de l'Article 3</h2>
+            <p>Résumé de l'article 3. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <a href="#">Lire la suite</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
