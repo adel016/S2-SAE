@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<h1>communes du département {{ libelle_departement }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Libellé communes</th>
+                <th>Voir plus de details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commune in communes %}
+            <tr>
+                <td>{{ commune.libelle_commune }}</td>
+                <td><a href="{{ url_for('view_region_details', code_region=region.code_region) }}">Voir détails</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+{% endblock %}

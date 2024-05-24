@@ -10,11 +10,17 @@ def get_db():
 
 @app.route('/')
 def home():
+    return render_template('index.html')
+
+@app.route('/region')
+def view_region():
     db = get_db()
     cur = db.execute('SELECT * FROM regions')
     regions = cur.fetchall()
     db.close()
     return render_template('regions.html', regions=regions)
+    
+
 
 @app.route('/region/<code_region>')
 def view_region_details(code_region):
@@ -23,6 +29,15 @@ def view_region_details(code_region):
     departements = cur.fetchall()
     db.close()
     return render_template('departements.html', departements=departements, code_region=code_region)
+
+@app.route('/departement/<code_departement>')
+def view_departement_details(code_departmeent):
+    db = get_db()
+    cur = db.execute('SELECT * FROM communes WHERE code_departement = ?', (code_departmeent,))
+    communes = cur.fetchall()
+    db.close()
+    return render_template('communes.html', communes=communes, code_departmeent=code_departmeent)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
