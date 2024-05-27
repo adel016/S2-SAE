@@ -25,10 +25,20 @@ def view_region():
 @app.route('/region/<code_region>')
 def view_region_details(code_region):
     db = get_db()
-    cur = db.execute('SELECT * FROM departements WHERE code_region = ?', (code_region,))
-    departements = cur.fetchall()
+    # Fetch the region name along with the departments
+    region_query = db.execute('SELECT libelle_region FROM regions WHERE code_region = ?', (code_region,))
+    region_name = region_query.fetchone()
+    
+    department_query = db.execute('SELECT * FROM departements WHERE code_region = ?', (code_region,))
+    departements = department_query.fetchall()
     db.close()
-    return render_template('departements.html', departements=departements, code_region=code_region)
+    
+    if region_name:
+        return render_template('departements.html', departements=departements, libelle_region=region_name['libelle_region'], code_region=code_region)
+    else:
+        return "Region not found", 404
+    
+    
 
 @app.route('/departement/<code_departement>')
 def view_departement_details(code_departmeent):

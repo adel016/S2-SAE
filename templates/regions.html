@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Régions</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='regions.css')}}">
 </head>
 <body>
+<section id="header">
+    <a href="#"><img src="/static/img/logo.png"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="#" class="acceuil">Accueil</a></li>
+            <li><a href="#">Comparaison</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Actus</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="display_regions">
     <h1>Les Régions</h1>
     <table border="1">
         <thead>
             <tr>
-                <th>Code Région</th>
-                <th>Libellé Région</th>
+                <th>Nom de la région</th>
+                <th>Détail</th>
             </tr>
         </thead>
         <tbody>
@@ -22,5 +36,6 @@
             {% endfor %}
         </tbody>
     </table>
+</section>
 </body>
 </html>

@@ -1,27 +1,40 @@
 {% extends 'base.html'%}
 
 {% block head %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='departements.css') }}">
 {% endblock %}
 
 {% block body %}
-<h1>departements de la Région {{ code_region }}</h1>
+
+<section id="header">
+    <a href="#"><img src="/static/img/logo.png"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="#" class="acceuil">Accueil</a></li>
+            <li><a href="#">Comparaison</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Actus</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="display_departements">
+    <h1>departements de la Région {{ libelle_region }}</h1>
     <table border="1">
         <thead>
             <tr>
-                <th>Code departements</th>
-                <th>Libellé departements</th>
+                <th>Nom des départements</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             {% for departement in departements %}
             <tr>
-                <td>{{ departement.code_departement }}</td>
                 <td>{{ departement.libelle_departement }}</td>
+                <td><a href="#">Voir détails</a></td>
             </tr>
             {% endfor %}
         </tbody>
-        
     </table>
-
+</section>
 {% endblock %}
