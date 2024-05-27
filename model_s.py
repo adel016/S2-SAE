@@ -28,6 +28,17 @@ cursor.execute('''
     )
 ''')
 
+# Création de la table communes
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS communes (
+        code_commune TEXT PRIMARY KEY,
+        libelle_commune TEXT UNIQUE,
+        code_departement TEXT,
+        FOREIGN KEY (code_departement) REFERENCES departements(code_departement)
+    )
+''')
+
+
 # Faire une requête à l'API
 response = requests.get(url)
 data = response.json()
@@ -36,11 +47,14 @@ data = response.json()
 if 'data' in data:
     regions_seen = set()
     departements_seen = set()
+    communes_seen = set()
     for station in data['data']:
         code_region = station.get('code_region')
         libelle_region = station.get('libelle_region')
         code_departement = station.get('code_departement')
         libelle_departement = station.get('libelle_departement')
+        code_commune = station.get('code_commune')
+        libelle_commune = station.get('libelle_commune')
         
         # Insertion des régions sans doublons
         if code_region and libelle_region and code_region not in regions_seen:
@@ -53,9 +67,13 @@ if 'data' in data:
             cursor.execute('INSERT OR IGNORE INTO departements (code_departement, libelle_departement, code_region) VALUES (?, ?, ?)',
                            (code_departement, libelle_departement, code_region))
             departements_seen.add(code_departement)
+
+        # Insertion des communes sans doublons
+        if code_commune and libelle_commune and code_commune not in communes_seen:
+            cursor.execute('INSERT OR IGNORE INTO communes (code_commune, libelle_commune, code_departement) VALUES (?, ?, ?)',
+                           (code_commune, libelle_commune, code_departement))
+            departements_seen.add(code_commune)
             
-
-
 
 # Valider les changement 
 conn.commit()

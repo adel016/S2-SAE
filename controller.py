@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 import sqlite3
 
 app = Flask(__name__)
@@ -39,14 +39,24 @@ def view_region_details(code_region):
         return "Region not found", 404
     
     
-
 @app.route('/departement/<code_departement>')
-def view_departement_details(code_departmeent):
+def view_departement_details(code_departement):
     db = get_db()
-    cur = db.execute('SELECT * FROM communes WHERE code_departement = ?', (code_departmeent,))
-    communes = cur.fetchall()
+    # Récupérer le nom du département
+    departement_query = db.execute('SELECT libelle_departement FROM departements WHERE code_departement = ?', (code_departement,))
+    departement_name = departement_query.fetchone()
+
+    # Récupérer les communes appartenant à ce département
+    commune_query = db.execute('SELECT * FROM communes WHERE code_departement = ?', (code_departement,))
+    communes = commune_query.fetchall()
     db.close()
-    return render_template('communes.html', communes=communes, code_departmeent=code_departmeent)
+    
+    if departement_name:
+        return render_template('communes.html', communes=communes, libelle_departement=departement_name['libelle_departement'], code_departement=code_departement)
+    else:
+        abort(404, description="Departement not found")
+
+    
 
 
 if __name__ == '__main__':

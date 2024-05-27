@@ -1,11 +1,24 @@
 {% extends 'base.html'%}
 
 {% block head %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='communes.css')}}">
 {% endblock %}
 
 {% block body %}
-<h1>communes du département {{ libelle_departement }}</h1>
+<section id="header">
+    <a href="#"><img src="/static/img/logo.png"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="#" class="acceuil">Accueil</a></li>
+            <li><a href="#">Comparaison</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Actus</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="display_communes">
+    <h1>Communes du département {{ libelle_departement }}</h1>
     <table border="1">
         <thead>
             <tr>
@@ -17,10 +30,12 @@
             {% for commune in communes %}
             <tr>
                 <td>{{ commune.libelle_commune }}</td>
-                <td><a href="{{ url_for('view_region_details', code_region=region.code_region) }}">Voir détails</a></td>
+                <td><a href="#">Voir détails</a></td>
             </tr>
             {% endfor %}
         </tbody>
-        
     </table>
+</section>
+
+
 {% endblock %}

@@ -19,7 +19,7 @@
 </section>
 
 <section id="display_departements">
-    <h1>departements de la Région {{ libelle_region }}</h1>
+    <h1>Departements de la Région {{ libelle_region }}</h1>
     <table border="1">
         <thead>
             <tr>
@@ -31,7 +31,7 @@
             {% for departement in departements %}
             <tr>
                 <td>{{ departement.libelle_departement }}</td>
-                <td><a href="#">Voir détails</a></td>
+                <td><a href="{{ url_for('view_departement_details', code_departement=departement.code_departement) }}">Voir détails</a></td>
             </tr>
             {% endfor %}
         </tbody>
