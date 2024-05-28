@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stations.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<section id="header">
+    <a href="#"><img src="/static/img/logo.png"></a>
+    <div>
+        <ul id="navbar">
+            <li><a href="#" class="acceuil">Accueil</a></li>
+            <li><a href="#">Comparaison</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Actus</a></li>
+        </ul>
+    </div>
+</section>
+
+<section id="display_stations">
+    <h1>Stations dans la commune {{ libelle_commune }}</h1>
+    <table border="1">
+        <tr>
+            <th>Code Station</th>
+            <th>Libellé Station</th>
+            <th>État de la Station</th>
+            <th>Dernière Mise à Jour</th>
+            <th>Détails</th>
+        </tr>
+        {% for station in stations %}
+        <tr>
+            <td>{{ station.code_station }}</td>
+            <td>{{ station.libelle_station }}</td>
+            <td>{{ station.etat_station }}</td>
+            <td>{{ station.date_maj_station }}</td>
+            <td><a href="{{ station.uri_cours_eau }}" target="_blank">Voir Cours d'Eau</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}

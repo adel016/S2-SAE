@@ -30,7 +30,7 @@
             {% for commune in communes %}
             <tr>
                 <td>{{ commune.libelle_commune }}</td>
-                <td><a href="#">Voir détails</a></td>
+                <td><a href="{{ url_for('stations_par_commune', code_commune=commune.code_commune) }}">Voir détails</a></td>
             </tr>
             {% endfor %}
         </tbody>

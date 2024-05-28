@@ -56,7 +56,26 @@ def view_departement_details(code_departement):
     else:
         abort(404, description="Departement not found")
 
+
+@app.route('/commune/<code_commune>/stations')
+def stations_par_commune(code_commune):
+    db = get_db()
+    try:
+        cur = db.execute('''
+            SELECT code_station, libelle_station, etat_station, date_maj_station, uri_cours_eau 
+            FROM stations 
+            WHERE code_commune = ?
+        ''', (code_commune,))
+        stations = cur.fetchall()
+    except sqlite3.Error as e:
+        db.close()
+        abort(500, description=f"Database error: {e}")
     
+    db.close()
+    if not stations:
+        abort(404, description="No stations found for this commune")
+
+    return render_template('stations.html', stations=stations, libelle_commune='Nom de la commune')
 
 
 if __name__ == '__main__':

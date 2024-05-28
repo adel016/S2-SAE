@@ -38,42 +38,52 @@ cursor.execute('''
     )
 ''')
 
+# Création de la table sttions
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS stations (
+    code_station TEXT PRIMARY KEY,
+    libelle_station TEXT UNIQUE,
+    uri_station TEXT,
+    code_commune TEXT,
+    code_cours_eau TEXT,
+    libelle_cours_eau TEXT,
+    uri_cours_eau TEXT,
+    etat_station TEXT,
+    date_maj_station TEXT,
+    FOREIGN KEY (code_commune) REFERENCES commune(code_commune)
+)
+''')
+
 
 # Faire une requête à l'API
 response = requests.get(url)
 data = response.json()
 
-# Extraire les données et les insérer dans la table SQLite
 if 'data' in data:
-    regions_seen = set()
-    departements_seen = set()
     communes_seen = set()
+    stations_seen = set()
     for station in data['data']:
-        code_region = station.get('code_region')
-        libelle_region = station.get('libelle_region')
-        code_departement = station.get('code_departement')
-        libelle_departement = station.get('libelle_departement')
+        # Récupérer les informations sur les stations
+        code_station = station.get('code_station')
+        libelle_station = station.get('libelle_station')
+        uri_station = station.get('uri_station')
         code_commune = station.get('code_commune')
-        libelle_commune = station.get('libelle_commune')
-        
-        # Insertion des régions sans doublons
-        if code_region and libelle_region and code_region not in regions_seen:
-            cursor.execute('INSERT OR IGNORE INTO regions (code_region, libelle_region) VALUES (?, ?)',
-                           (code_region, libelle_region))
-            regions_seen.add(code_region)
+        code_cours_eau = station.get('code_cours_eau')
+        libelle_cours_eau = station.get('libelle_cours_eau')
+        uri_cours_eau = station.get('uri_cours_eau')
+        etat_station = station.get('etat_station')
+        date_maj_station = station.get('date_maj_station')
 
-        # Insertion des départements sans doublons
-        if code_departement and libelle_departement and code_departement not in departements_seen:
-            cursor.execute('INSERT OR IGNORE INTO departements (code_departement, libelle_departement, code_region) VALUES (?, ?, ?)',
-                           (code_departement, libelle_departement, code_region))
-            departements_seen.add(code_departement)
-
-        # Insertion des communes sans doublons
-        if code_commune and libelle_commune and code_commune not in communes_seen:
-            cursor.execute('INSERT OR IGNORE INTO communes (code_commune, libelle_commune, code_departement) VALUES (?, ?, ?)',
-                           (code_commune, libelle_commune, code_departement))
-            departements_seen.add(code_commune)
-            
+        # Insertion des informations de la station dans la base de données
+        if code_station not in stations_seen:
+            cursor.execute('''
+                INSERT OR IGNORE INTO stations (
+                    code_station, libelle_station, uri_station, code_commune, code_cours_eau,
+                    libelle_cours_eau, uri_cours_eau, etat_station, date_maj_station)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (code_station, libelle_station, uri_station, code_commune, code_cours_eau,
+                  libelle_cours_eau, uri_cours_eau, etat_station, date_maj_station))
+            stations_seen.add(code_station)
 
 # Valider les changement 
 conn.commit()
