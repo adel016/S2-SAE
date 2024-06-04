@@ -7,13 +7,18 @@
 </head>
 <body>
 <section id="header">
-    <a href="#"><img src="/static/img/logo.png"></a>
+    <a href="#">
+        <div class="loader">
+            <span>riverflow</span>
+            <span>riverflow</span>
+        </div>
+    </a>
     <div>
         <ul id="navbar">
-            <li><a href="#" class="acceuil">Accueil</a></li>
-            <li><a href="#">Comparaison</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Actus</a></li>
+          <a href="#" class="lien">Accueil</a>
+          <a href="#" class="lien">Comparaison</a>
+          <a href="#" class="lien">À propos</a>
+          <a href="#" class="lien">Actus</a>
         </ul>
     </div>
 </section>
@@ -31,7 +36,7 @@
             {% for region in regions %}
             <tr>
                 <td>{{ region.libelle_region }}</td>
-                <td><a href="{{ url_for('view_region_details', code_region=region.code_region) }}">Voir détails</a></td>
+                <td><a class="lien_détails" href="{{ url_for('view_region_details', code_region=region.code_region) }}">Voir détails</a></td>
             </tr>
             {% endfor %}
         </tbody>

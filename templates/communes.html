@@ -6,13 +6,18 @@
 
 {% block body %}
 <section id="header">
-    <a href="#"><img src="/static/img/logo.png"></a>
+    <a href="#">
+        <div class="loader">
+            <span>riverflow</span>
+            <span>riverflow</span>
+        </div>
+    </a>
     <div>
         <ul id="navbar">
-            <li><a href="#" class="acceuil">Accueil</a></li>
-            <li><a href="#">Comparaison</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Actus</a></li>
+          <a href="#" class="lien">Accueil</a>
+          <a href="#" class="lien">Comparaison</a>
+          <a href="#" class="lien">À propos</a>
+          <a href="#" class="lien">Actus</a>
         </ul>
     </div>
 </section>
@@ -30,7 +35,7 @@
             {% for commune in communes %}
             <tr>
                 <td>{{ commune.libelle_commune }}</td>
-                <td><a href="{{ url_for('stations_par_commune', code_commune=commune.code_commune) }}">Voir détails</a></td>
+                <td><a class="lien_détails" href="{{ url_for('stations_par_commune', code_commune=commune.code_commune) }}">Voir détails</a></td>
             </tr>
             {% endfor %}
         </tbody>
