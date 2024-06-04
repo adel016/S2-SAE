@@ -15,6 +15,14 @@ def get_db():
 def home():
     return render_template('index.html')
 
+@app.route('/news')
+def derniere_nouvelle():
+    return render_template('news.html')
+
+@app.route('/about')
+def but():
+    return render_template('about.html')
+
 @app.route('/region')
 def view_region():
     db = get_db()
