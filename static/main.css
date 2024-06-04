@@ -234,3 +234,47 @@ body{
     transform: translate(-10%, 10%) rotate(45deg);
   }
 }
+
+/*NavBar pour les liens hypertexts*/
+
+.lien{
+  font-size: 18px;
+  color: #0039f4;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+  text-decoration:none;
+  padding: 0px 20px;
+}
+
+.lien:focus,
+.lien:hover {
+  color: #497aff;
+}
+
+.lien:focus:after,
+.lien:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.lien:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #497aff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
