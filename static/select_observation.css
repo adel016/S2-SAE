@@ -1,46 +1,126 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: none;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/static/img/bg.jpg');
-    background-size: cover;
-    background-position: center;
+    height: 160vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(img/bg.jpg);
+    background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
-header {
-    background-color: #f2f2f2;
-    padding: 10px 20px;
+.section1{
+    padding: 40px 80px;
+}
+
+.section2 {
+    margin: 40px 0;
+}
+
+/* Bouton */
+.btn {
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #000;
+    background-color: #fff;
+    transition: 0.3s;
+    text-align: center;
+    font-weight: 600;
+}
+
+.btn:hover{
+    color: #fff;
+    background-color: #00ddff;
+}
+
+#header{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    background-color: rgb(250, 252, 255);
+    padding: 20px;
+    box-shadow: 0 3px 20px ;
+    box-shadow: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
-nav#navbar ul {
-    list-style: none;
+#navbar{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-nav#navbar li {
-    padding: 0 15px;
+#navbar li{
+    padding: 0 20px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
-nav#navbar a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
+#navbar li:hover{
+    transform: scale(1.2);
 }
 
-.logo img {
-    width: 50px;
+#navbar li a {
+    color: #2774a0;
+    font-size: 16px;
+    font-weight: 600;
 }
+
+#header img{
+    width: 100px;
+    border-radius: 50px;
+}
+
+/* Bannière section */
+
+
+.image-pleine-largeur {
+    width: 100%;    /* L'image prendra toute la largeur de l'élément parent */
+    height: 600px;  /* Hauteur fixe de l'image */
+    object-fit: cover;  /* L'image couvre l'espace défini sans être déformée */
+  }
+  
+
+
+/* Coeur de l'index */
+
+.container {
+    display: flex; /* Utilise Flexbox pour disposer les sections côte à côte */
+    margin: 100px 20px; /* Marge de 20px sur les côtés de la fenêtre */
+  }
+  .half-width {
+    flex: 1; /* Chaque section prendra la moitié de l'espace disponible */
+    margin: 0 50px; /* Marge importante entre les deux sections */
+    background-color: #f8f8f8; /* Couleur de fond pour visibilité */
+    padding: 20px; /* Espacement à l'intérieur des sections */
+  }
+  .left-column {
+    display: flex; /* Utilisation de Flexbox à l'intérieur de cette section */
+    flex-direction: column; /* Organisation en colonnes */
+    gap: 20px; /* Espace entre les lignes */
+  }
+  .left-column-item {
+    display: flex; /* Chaque item est aussi un flex container */
+    align-items: center; /* Centrage des éléments verticalement */
+    justify-content: space-between; /* Espace réparti entre les éléments */
+  }
+  .container img {
+    border-radius: 50px; /* Bordures arrondies pour toutes les images */
+  }
 
 .form-container {
     width: 50%;
@@ -131,4 +211,49 @@ footer {
       clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
        51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
     }
+  }
+
+  
+  /*NavBar pour les liens hypertexts*/
+  
+  .lien{
+    font-size: 18px;
+    color: #0039f4;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+    text-decoration:none;
+    padding: 0px 20px;
+  }
+  
+  .lien:focus,
+  .lien:hover {
+    color: #497aff;
+  }
+  
+  .lien:focus:after,
+  .lien:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+  
+  .lien:after {
+    content: "";
+    pointer-events: none;
+    bottom: -2px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #497aff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
   }
