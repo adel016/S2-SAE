@@ -31,23 +31,38 @@
       <div class="left-column">
         <div class="left-column-item">
           <h1>Dernière Nouvelle</h1>
-          <a href="#"><img src="/static/img/nouvelle.png" alt=""></a>
+          <a href="#">
+            <button class="recherche">
+              <span class="span">📢</span>
+            </button>
         </div>
         <div class="left-column-item">
           <h1>Notre but</h1>
-          <a href="#"><img src="/static/img/anime_river.jpg" alt="" width="300px"></a>
+          <a href="#">
+            <button class="recherche">
+              <span class="span">🎯</span>
+            </button>
+          </a>
         </div>
       </div>
     </div>
     <div class="half-width">
       <div class="left-column">
         <div class="left-column-item">
-          <h1>Recherche de donnée</h1>
-          <a href="{{ url_for('view_region') }}"><img src="/static/img/icone_loupe.png" alt="" width="200px"></a>
+          <h1>Recherche de données</h1>
+          <a href="{{ url_for('view_region') }}">
+            <button class="recherche">
+              <span class="span">🔎</span>
+            </button>
+          </a>
         </div>
         <div class="left-column-item">
           <h1>Choisir une Date et un Lieu</h1>
-          <a href="{{ url_for('select_observation') }}"><img src="/static/img/anime_river.jpg" alt="" width="300px"></a>
+          <a href="{{ url_for('select_observation') }}">
+            <button class="recherche">
+              <span class="span">📅</span>
+            </button>
+          </a>
         </div>
       </div>
     </div>

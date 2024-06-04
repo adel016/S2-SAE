@@ -149,6 +149,8 @@ body{
   animation: uiverse723 3s ease-in-out infinite;
 }
 
+/*animations des vagues du riverflow */
+
 @keyframes uiverse723 {
   0%, 100% {
     clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
@@ -158,5 +160,77 @@ body{
   50% {
     clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
      51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+/* Boutons emojis*/
+
+.recherche{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8e8e8;
+  background-color: #212121;
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  text-transform: uppercase;
+  border: 2px solid #212121;
+  border-radius: 50%;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.15),
+    2px 2px 2px rgba(0, 0, 0, 0.1),
+    -3px -3px 2px rgba(255, 255, 255, 0.05),
+    -2px -2px 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.recherche.span {
+  position: relative;
+  z-index: 2;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.recherche::before {
+  content: "";
+  position: absolute;
+  background-color: #e8e8e8;
+  width: 150%;
+  height: 150%;
+  left: 0%;
+  bottom: 0%;
+  transform: translate(-100%, 100%) rotate(45deg);
+  border-radius: 15px;
+}
+
+.recherche:hover::before {
+  animation: shakeBack 0.6s forwards 0.6s;
+}
+
+.recherche:hover .span {
+  scale: 1.2;
+}
+
+.recherche:hover {
+  box-shadow: none;
+}
+
+.recherche:active {
+  scale: 0.95;
+}
+
+@keyframes shakeBack {
+  0% {
+    transform: translate(-100%, 100%) rotate(45deg);
+  }
+
+  50% {
+    transform: translate(15%, -15%) rotate(45deg);
+  }
+
+  100% {
+    transform: translate(-10%, 10%) rotate(45deg);
   }
 }
