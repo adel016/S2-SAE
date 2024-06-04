@@ -83,15 +83,7 @@ def select_observation():
     finally:
         db.close()
 
-@app.route('/fetch-observation')
-def fetch_observation():
-    date = request.args.get('date')
-    station_id = request.args.get('station_id')
-    observation_data = get_observation_data(date, station_id)
-    if observation_data:
-        return render_template('display_observation.html', observation_data=observation_data, date=date, station_id=station_id)
-    else:
-        return "No observations found", 404
+  
 
 def get_observation_data(date, station_id):
     observation_url = f"https://hubeau.eaufrance.fr/api/v1/ecoulement/observations?code_station={station_id}&date_observation={date}"
