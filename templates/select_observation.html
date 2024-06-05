@@ -34,7 +34,7 @@
             
             <div class="form-group">
                 <label for="station_id">Station:</label>
-                <select id="station_id" name="station_id" required>
+                <select class="station-lie" id="station_id" name="station_id" required>
                     {% for station in stations %}
                     <option value="{{ station.code_station }}">{{ station.libelle_station }}</option>
                     {% endfor %}

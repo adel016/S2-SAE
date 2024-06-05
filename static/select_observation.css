@@ -147,6 +147,7 @@ select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    padding: 10px 0px;
 }
 
 button {
@@ -158,13 +159,13 @@ button {
   font-weight: 600;
   letter-spacing: 2px;
   background: transparent;
-  color: #001BFF;
+  color: #000000;
   overflow: hidden;
   box-shadow: 0 0 0 0 transparent;
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  padding: 10px 340px;
+  padding: 10px 337px;
 }
 
 button:hover {
