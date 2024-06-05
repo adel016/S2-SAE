@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block head %}
+<!-- You can link any required CSS here -->
+
+{% endblock %}
+
+{% block body %}
+    <h1>Observations for Station on Selected Date</h1>
+    <p>Date: {{ date }}</p>
+    <p>Station ID: {{ station_id }}</p>
+    {% if observations %}
+        <p>Libellé écoulement: {{ observations[0].libelle_ecoulement }}</p>
+    {% else %}
+        <p>No observations available.</p>
+    {% endif %}
+{% endblock %}

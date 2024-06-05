@@ -77,29 +77,39 @@ def stations_par_commune(code_commune):
     finally:
         db.close()
 
+
+
 @app.route('/select-observation', methods=['GET', 'POST'])
 def select_observation():
     db = get_db()
-    try:
-        if request.method == 'POST':
-            date = request.form['date']
-            station_id = request.form['station_id']
+    if request.method == 'POST':
+        date = request.form.get('date')
+        station_id = request.form.get('station_id')
+        if date and station_id:
             return redirect(url_for('fetch_observation', date=date, station_id=station_id))
-        
-        stations = db.execute('SELECT code_station, libelle_station FROM stations').fetchall()
-        return render_template('select_observation.html', stations=stations)
-    finally:
-        db.close()
+        else:
+            return "Date ou station manquante", 400
 
-  
+    stations = db.execute('SELECT code_station, libelle_station FROM stations').fetchall()
+    db.close()
+    return render_template('select_observation.html', stations=stations)
 
-def get_observation_data(date, station_id):
+@app.route('/fetch-observation')
+def fetch_observation():
+    date = request.args.get('date')
+    station_id = request.args.get('station_id')
+    observations = get_observation_data(station_id, date)
+    return render_template('display_observation.html', observations=observations, date=date, station_id=station_id)
+
+def get_observation_data(station_id, date):
+    """ Fetch observation data for the given station on the specified date """
     observation_url = f"https://hubeau.eaufrance.fr/api/v1/ecoulement/observations?code_station={station_id}&date_observation={date}"
     response = requests.get(observation_url)
     if response.status_code == 200:
         data = response.json()
-        return data['data'] if 'data' in data else None
-    return None
+        return data.get('data', [])
+    return []
+
 
 if __name__ == '__main__':
     app.run(debug=True)
