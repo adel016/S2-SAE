@@ -129,7 +129,16 @@ tr:hover {
     text-decoration: underline; /* Soulignement au survol */
 }
 
-
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
  /*riverflow en haut à gauche*/
  
  .loader {

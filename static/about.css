@@ -99,13 +99,12 @@ body {
 #about {
     padding: 40px 80px;
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
 }
 
 #about .container {
-    max-width: 1200px;
+    text-align: center;
     margin: 0 auto;
 }
 
@@ -119,9 +118,19 @@ body {
     margin-bottom: 20px;
     color: #333;
     line-height: 1.6;
+    border: 5px double #999;
 }
 
-
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
 
  /*riverflow en haut à gauche*/
  
