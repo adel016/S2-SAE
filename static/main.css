@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,700&display=swap');
 
 *{
     padding: 0;
@@ -127,6 +127,15 @@ h1 {
   font-size: 24px; /* Taille de police plus grande pour les titres */
 }
 
+h2 {
+  font-family: "Raleway", sans-serif;
+  margin: 1rem 0 .75rem;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 1px;
+  padding: 0 100px;
+}
+
 .recherche {
   padding: 10px;
   background-color: #ffffff;
@@ -140,15 +149,17 @@ h1 {
   background-color: #eeeeee; /* Légère variation pour le survol */
 }
 
+/* footer */
 footer {
   text-align: center;
-  padding: 10px;
-  background-color: #f2f2f2;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #f2f2f2;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
 }
  /*riverflow en haut à gauche*/
  
@@ -303,3 +314,10 @@ footer {
   transition-duration: 400ms;
   transition-property: width, left;
 }
+
+/*Vidéo youtube*/
+.video{ 
+  padding: 0px 0px 50px 180px;
+
+}
+

@@ -1,12 +1,23 @@
 {% extends 'base.html'%}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
 {% endblock %}
 
 {% block body %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+  
 <section id="header">
     <a href="#">
+
       <div class="loader">
         <span>riverflow</span>
         <span>riverflow</span>
@@ -67,9 +78,13 @@
       </div>
     </div>
   </div>
-  
 </section>
+<h2>Vidéo à la une</h2>
+<iframe class="video" width="1120" height="630" src="https://www.youtube.com/embed/nexk-0udrqc?si=7P9OgAztUTeSR6nP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<br>
 <footer>
   <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
 </footer>
+</body>
+</html>
 {% endblock %}
