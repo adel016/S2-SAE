@@ -321,8 +321,20 @@ footer {
 }
 
 /*Vidéo youtube*/
+.video_container{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
 .video{ 
-  padding: 0px 0px 50px 180px;
-
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 75%;
+  padding-left: 13%;
 }
 
