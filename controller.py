@@ -99,16 +99,34 @@ def fetch_observation():
     date = request.args.get('date')
     station_id = request.args.get('station_id')
     observations = get_observation_data(station_id, date)
+    
+    # Ajout de la logique pour attribuer un emoji en fonction de l'état de l'écoulement
+    for observation in observations:
+        label = observation['libelle_ecoulement']
+        if label == 'Ecoulement visible':
+            observation['emoji'] = '🌊'  # Ecoulement fort
+        elif label == 'Ecoulement visible acceptable':
+            observation['emoji'] = '💧'  # Ecoulement acceptable
+        elif label == 'Ecoulement visible faible':
+            observation['emoji'] = '🌧️'  # Ecoulement faible
+        elif label == 'Ecoulement non visible':
+            observation['emoji'] = '🚫'  # Pas d'écoulement visible
+        elif label == 'Assec':
+            observation['emoji'] = '🏜️'  # Sec
+        elif label == 'Observation impossible':
+            observation['emoji'] = '❓'  # Donnée incertaine
+
     return render_template('display_observation.html', observations=observations, date=date, station_id=station_id)
 
+
 def get_observation_data(station_id, date):
-    """ Fetch observation data for the given station on the specified date """
     observation_url = f"https://hubeau.eaufrance.fr/api/v1/ecoulement/observations?code_station={station_id}&date_observation={date}"
     response = requests.get(observation_url)
     if response.status_code == 200:
         data = response.json()
         return data.get('data', [])
     return []
+
 
 
 if __name__ == '__main__':
