@@ -150,6 +150,8 @@ select {
     padding: 10px 0px;
 }
 
+/* Other styles remain the same */
+
 button {
   position: relative;
   border-radius: 7px;
@@ -165,7 +167,11 @@ button {
   -webkit-transition: all 0.2s ease-in;
   -moz-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
-  padding: 10px 337px;
+  padding: 10px 5%; /* Adjusted padding to percentage */
+  width: 90%; /* Ensure button takes 90% of its container's width */
+  max-width: 400px; /* Limit the maximum width */
+  margin: 0 auto; /* Center the button */
+  display: block; /* Make sure the button is a block element */
 }
 
 button:hover {
@@ -222,6 +228,20 @@ button:active {
   -moz-transition: box-shadow 0.2s ease-in;
   transition: box-shadow 0.2s ease-in;
 }
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  button {
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    padding: 10px 15%;
+  }
+}
+
 
 
 footer {
