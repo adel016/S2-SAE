@@ -5,7 +5,7 @@
     margin: 0;
     text-decoration: none;
     list-style: none;
-    box-sizing: none;
+    box-sizing: border-box;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
     background-size: cover;
 }
 
-.section1{
+.section1 {
     padding: 40px 80px;
 }
 
@@ -39,18 +39,19 @@ body {
     font-weight: 600;
 }
 
-.btn:hover{
+.btn:hover {
     color: #fff;
     background-color: #00ddff;
 }
 
-#header{
+/*navbar responsive*/
+#header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: rgb(250, 252, 255);
     padding: 20px;
-    box-shadow: 0 3px 20px ;
+    box-shadow: 0 3px 20px;
     box-shadow: rgba(0, 0, 0, 0.3);
     z-index: 999;
     position: sticky;
@@ -58,19 +59,20 @@ body {
     left: 0;
 }
 
-#navbar{
+#navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    list-style: none;
 }
 
-#navbar li{
+#navbar li {
     padding: 0 20px;
     font-size: 16px;
     transition: 0.3s;
 }
 
-#navbar li:hover{
+#navbar li:hover {
     transform: scale(1.2);
 }
 
@@ -80,47 +82,81 @@ body {
     font-weight: 600;
 }
 
-#header img{
-    width: 100px;
-    border-radius: 50px;
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    height: 3px;
+    width: 25px;
+    background-color: #0039f4;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    #navbar {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgb(250, 252, 255);
+    }
+
+    #navbar li {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+#mobile-menu:checked + #navbar {
+    display: flex;
 }
 
 /* Bannière section */
-
-
 .image-pleine-largeur {
     width: 100%;    /* L'image prendra toute la largeur de l'élément parent */
     height: 600px;  /* Hauteur fixe de l'image */
     object-fit: cover;  /* L'image couvre l'espace défini sans être déformée */
-  }
-  
-
+}
 
 /* Coeur de l'index */
-
 .container {
     display: flex; /* Utilise Flexbox pour disposer les sections côte à côte */
     margin: 100px 20px; /* Marge de 20px sur les côtés de la fenêtre */
-  }
-  .half-width {
+}
+
+.half-width {
     flex: 1; /* Chaque section prendra la moitié de l'espace disponible */
     margin: 0 50px; /* Marge importante entre les deux sections */
     background-color: #f8f8f8; /* Couleur de fond pour visibilité */
     padding: 20px; /* Espacement à l'intérieur des sections */
-  }
-  .left-column {
+}
+
+.left-column {
     display: flex; /* Utilisation de Flexbox à l'intérieur de cette section */
     flex-direction: column; /* Organisation en colonnes */
     gap: 20px; /* Espace entre les lignes */
-  }
-  .left-column-item {
+}
+
+.left-column-item {
     display: flex; /* Chaque item est aussi un flex container */
     align-items: center; /* Centrage des éléments verticalement */
     justify-content: space-between; /* Espace réparti entre les éléments */
-  }
-  .container img {
+}
+
+.container img {
     border-radius: 50px; /* Bordures arrondies pour toutes les images */
-  }
+}
 
 .form-container {
     width: 50%;
@@ -151,78 +187,81 @@ select {
 }
 
 button {
-  position: relative;
-  border-radius: 7px;
-  border: 1px solid rgb(61, 106, 255);
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 2px;
-  background: transparent;
-  color: #000000;
-  overflow: hidden;
-  box-shadow: 0 0 0 0 transparent;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-  padding: 10px 337px;
+    position: relative;
+    border-radius: 7px;
+    border: 1px solid rgb(61, 106, 255);
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background: transparent;
+    color: #000000;
+    overflow: hidden;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    padding: 10px 5%; /* Adjusted padding to percentage */
+    width: 90%; /* Ensure button takes 90% of its container's width */
+    max-width: 400px; /* Limit the maximum width */
+    margin: 0 auto; /* Center the button */
+    display: block; /* Make sure the button is a block element */
 }
 
 button:hover {
-  background: rgb(61, 106, 255);
-  box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+    background: rgb(61, 106, 255);
+    box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 
 button:hover::before {
-  -webkit-animation: sh02 0.5s 0s linear;
-  -moz-animation: sh02 0.5s 0s linear;
-  animation: sh02 0.5s 0s linear;
+    -webkit-animation: sh02 0.5s 0s linear;
+    -moz-animation: sh02 0.5s 0s linear;
+    animation: sh02 0.5s 0s linear;
 }
 
 button::before {
-  content: '';
-  display: block;
-  width: 0px;
-  height: 86%;
-  position: absolute;
-  top: 7%;
-  left: 0%;
-  opacity: 0;
-  background: #fff;
-  box-shadow: 0 0 50px 30px #fff;
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -ms-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
-  transform: skewX(-20deg);
+    content: '';
+    display: block;
+    width: 0px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+    transform: skewX(-20deg);
 }
 
 @keyframes sh02 {
-  from {
-    opacity: 0;
-    left: 0%;
-  }
+    from {
+        opacity: 0;
+        left: 0%;
+    }
 
-  50% {
-    opacity: 1;
-  }
+    50% {
+        opacity: 1;
+    }
 
-  to {
-    opacity: 0;
-    left: 100%;
-  }
+    to {
+        opacity: 0;
+        left: 100%;
+    }
 }
 
 button:active {
-  box-shadow: 0 0 0 0 transparent;
-  -webkit-transition: box-shadow 0.2s ease-in;
-  -moz-transition: box-shadow 0.2s ease-in;
-  transition: box-shadow 0.2s ease-in;
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
 }
-
 
 footer {
     text-align: center;
@@ -236,42 +275,39 @@ footer {
 }
 
 /*riverflow en haut à gauche*/
- 
 .loader {
     position: relative;
-  }
-  
-  .loader span {
+}
+
+.loader span {
     position: absolute;
     color: #fff;
     transform: translate(-10%, -50%);
     font-size: 38px;
-  }
-  
-  .loader span:nth-child(1) {
+}
+
+.loader span:nth-child(1) {
     color: transparent;
     -webkit-text-stroke: 0.3px rgb(0, 57, 244);
-  }
-  
-  .loader span:nth-child(2) {
+}
+
+.loader span:nth-child(2) {
     color: rgb(0, 4, 255);
     -webkit-text-stroke: 1px rgb(17, 0, 255);
     animation: uiverse723 3s ease-in-out infinite;
-  }
-  
-  /*animations des vagues du riverflow */
-  
-  @keyframes uiverse723 {
+}
+
+/*animations des vagues du riverflow */
+@keyframes uiverse723 {
     0%, 100% {
-      clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-       54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+        54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
     }
-  
     50% {
-      clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-       51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 
+        51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
     }
-  }
+}
 
   
   /*NavBar pour les liens hypertexts*/
