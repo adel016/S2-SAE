@@ -1,17 +1,48 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 
 {% block head %}
-<!-- You can link any required CSS here -->
-
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
 {% endblock %}
 
 {% block body %}
-    <h1>Observations for Station on Selected Date</h1>
-    <p>Date: {{ date }}</p>
-    <p>Station ID: {{ station_id }}</p>
-    {% if observations %}
-        <p>Libellé écoulement: {{ observations[0].libelle_ecoulement }}</p>
-    {% else %}
-        <p>No observations available.</p>
-    {% endif %}
+<h1>Observations for Station on Selected Date</h1>
+<p>Date de requête: {{ date }}</p>
+<p>Station ID: {{ station_id }}</p>
+<table>
+    <thead>
+        <tr>
+            <th>Date d'observation</th>
+            <th>Heure</th>
+            <th>Libellé écoulement</th>
+            <th>Emoji</th>
+            <th>Code Campagne</th>
+            <th>Cours d'eau</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for observation in observations %}
+        <tr>
+            <td>{{ observation.date_observation }}</td>
+            <td>{{ observation.heure_observation }}</td>
+            <td>{{ observation.libelle_ecoulement }}</td>
+            <td>{{ observation.emoji }}</td>
+            <td>{{ observation.code_campagne }}</td>
+            <td><a href="{{ observation.uri_cours_eau }}">Lien</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
