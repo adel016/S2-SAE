@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Régions</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='global.css')}}">
+</head>
+<body class="body_display_observation">
+<section id="header">
+    <a href="{{ url_for('home') }}">
+        <div class="loader">
+            <span>riverflow</span>
+            <span>riverflow</span>
+        </div>
+    </a>
+    <div class="menu-toggle" id="menu-icon">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar.style.display === "flex") {
+                navbar.style.display = "none";
+            } else {
+                navbar.style.display = "flex";
+            }
+        });
+    </script>
+    <div>
+        <ul id="navbar">
+            <a href="{{ url_for('home') }}" class="lien">Accueil</a>
+            <a href="#" class="lien">Comparaison</a>
+            <a href="{{ url_for('but') }}" class="lien">À propos</a>
+            <a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a>
+        </ul>
+    </div>
+</section>
 <style>
     table {
         width: 100%;
@@ -13,6 +52,9 @@
     }
     th {
         background-color: #f2f2f2;
+    }
+    p{
+        
     }
 </style>
 {% endblock %}
@@ -45,4 +87,9 @@
         {% endfor %}
     </tbody>
 </table>
+<footer>
+    <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
+</footer>
+</body>
+</html>
 {% endblock %}

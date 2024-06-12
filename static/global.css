@@ -1,5 +1,10 @@
+/*Polices d'écritures*/
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,700&display=swap');
+
+
+/*CSS de l'index.html*/
 
 *{
     padding: 0;
@@ -14,6 +19,343 @@
     font-family: 'Roboto', sans-serif;
     height: 160vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(img/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.section1{
+    padding: 40px 80px;
+}
+
+.section2 {
+    margin: 40px 0;
+}
+
+/* Bouton */
+.btn {
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    color: #000;
+    background-color: #fff;
+    transition: 0.3s;
+    text-align: center;
+    font-weight: 600;
+}
+
+.btn:hover{
+    color: #fff;
+    background-color: #00ddff;
+}
+
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(250, 252, 255);
+    padding: 20px;
+    box-shadow: 0 3px 20px ;
+    box-shadow: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#navbar li{
+    padding: 0 20px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#navbar li:hover{
+    transform: scale(1.2);
+}
+
+#navbar li a {
+    color: #2774a0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#header img{
+    width: 100px;
+    border-radius: 50px;
+}
+
+/* Bannière section */
+
+
+.image-pleine-largeur {
+    width: 100%;    /* L'image prendra toute la largeur de l'élément parent */
+    height: 600px;  /* Hauteur fixe de l'image */
+    object-fit: cover;  /* L'image couvre l'espace défini sans être déformée */
+  }
+  
+
+
+/* Coeur de l'index */
+
+.container {
+  display: flex;
+  margin: 100px 20px;
+  
+}
+.half-width {
+  flex: 1;
+  margin: 0 50px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  
+}
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.left-column-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  color: #000000; /* Couleur plus foncée pour les titres */
+  font-size: 24px; /* Taille de police plus grande pour les titres */
+}
+
+.titre_video {
+  font-family: "Raleway", sans-serif;
+  margin: 1rem 0 .75rem;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 1px;
+  padding: 0 100px;
+  color: #000000;
+}
+
+.recherche {
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.recherche:hover {
+  background-color: #eeeeee; /* Légère variation pour le survol */
+}
+
+/* footer */
+footer {
+  text-align: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+ /*riverflow en haut à gauche*/
+ 
+.loader {
+  position: relative;
+}
+
+.loader span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-10%, -50%);
+  font-size: 38px;
+}
+
+.loader span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(0, 57, 244);
+}
+
+.loader span:nth-child(2) {
+  color: rgb(0, 4, 255);
+  -webkit-text-stroke: 1px rgb(17, 0, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+/*animations des vagues du riverflow */
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+/* Boutons emojis*/
+
+.recherche{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e8e8e8;
+  background-color: #212121;
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  text-transform: uppercase;
+  border: 2px solid #212121;
+  border-radius: 50%;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.15),
+    2px 2px 2px rgba(0, 0, 0, 0.1),
+    -3px -3px 2px rgba(255, 255, 255, 0.05),
+    -2px -2px 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.recherche.span {
+  position: relative;
+  z-index: 2;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.recherche::before {
+  content: "";
+  position: absolute;
+  background-color: #e8e8e8;
+  width: 150%;
+  height: 150%;
+  left: 0%;
+  bottom: 0%;
+  transform: translate(-100%, 100%) rotate(45deg);
+  border-radius: 15px;
+}
+
+.recherche:hover::before {
+  animation: shakeBack 0.6s forwards 0.6s;
+}
+
+.recherche:hover .span {
+  scale: 1.2;
+}
+
+.recherche:hover {
+  box-shadow: none;
+}
+
+.recherche:active {
+  scale: 0.95;
+}
+
+@keyframes shakeBack {
+  0% {
+    transform: translate(-100%, 100%) rotate(45deg);
+  }
+
+  50% {
+    transform: translate(15%, -15%) rotate(45deg);
+  }
+
+  100% {
+    transform: translate(-10%, 10%) rotate(45deg);
+  }
+}
+
+/*NavBar pour les liens hypertexts*/
+
+.lien{
+  font-size: 18px;
+  color: #0039f4;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+  text-decoration:none;
+  padding: 0px 20px;
+}
+
+.lien:focus,
+.lien:hover {
+  color: #497aff;
+}
+
+.lien:focus:after,
+.lien:hover:after {
+  width: 100%;
+  left: 0%;
+}
+
+.lien:after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #497aff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+/*Vidéo youtube*/
+.video_container{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.video{ 
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 75%;
+  padding-left: 13%;
+}
+
+/*CSS du display_observations.html*/
+
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: none;
+}
+
+
+.body_display_observation{
+    font-family: 'Roboto', sans-serif;
+    height: 160vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

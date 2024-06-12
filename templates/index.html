@@ -13,7 +13,7 @@
     <title>Accueil</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
-<body>
+<body class="body_index">
   
 <section id="header">
     <a href="{{ url_for('home') }}">
@@ -23,6 +23,21 @@
         <span>riverflow</span>
       </div>
     </a>
+    <div class="menu-toggle" id="menu-icon">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <script>
+      document.getElementById('menu-icon').addEventListener('click', function() {
+          var navbar = document.getElementById('navbar');
+          if (navbar.style.display === "flex") {
+              navbar.style.display = "none";
+          } else {
+              navbar.style.display = "flex";
+          }
+      });
+    </script>
     <div>
         <ul id="navbar">
           <a href="{{ url_for('home') }}" class="lien">Accueil</a>
@@ -79,7 +94,7 @@
     </div>
   </div>
 </section>
-<h2>Vidéo à la une</h2>
+<h2 class="titre_video">Vidéo à la une</h2>
 <div class="video_container">
   <iframe class="video" width="1120" height="630" src="https://www.youtube.com/embed/nexk-0udrqc?si=7P9OgAztUTeSR6nP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
