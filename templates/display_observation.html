@@ -5,7 +5,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Régions</title>
+    <title>Observations des Stations</title>
     <link rel="stylesheet" href="{{url_for('static', filename='global.css')}}">
 </head>
 <body class="body_display_observation">
@@ -21,37 +21,24 @@
         <span class="bar"></span>
         <span class="bar"></span>
     </div>
-    <script>
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar.style.display === "flex") {
-                navbar.style.display = "none";
-            } else {
-                navbar.style.display = "flex";
-            }
-        });
-    </script>
-    <div>
-        <ul id="navbar">
-            <a href="{{ url_for('home') }}" class="lien">Accueil</a>
-            <a href="#" class="lien">Comparaison</a>
-            <a href="{{ url_for('but') }}" class="lien">À propos</a>
-            <a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a>
-        </ul>
-    </div>
+    <ul id="navbar">
+        <a href="{{ url_for('home') }}" class="lien">Accueil</a>
+        <a href="#" class="lien">Comparaison</a>
+        <a href="{{ url_for('but') }}" class="lien">À propos</a>
+        <a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a>
+    </ul>
 </section>
 {% endblock %}
 
 {% block body %}
 <div class="container-observations">
 <h1 class="h1_obs">Observations des stations</h1>
-<p class="date_obs">Date de requête: {{ date }}</p>
+<p class="date_obs">Date de requête: {{ date_min }} à {{ date_max }}</p>
 <p class="station_obs">Station ID: {{ station_id }}</p>
 <table>
     <thead>
         <tr>
             <th>Date d'observation</th>
-            <th>Heure</th>
             <th>Libellé écoulement</th>
             <th>Emoji</th>
             <th>Code Campagne</th>
@@ -62,7 +49,6 @@
         {% for observation in observations %}
         <tr>
             <td>{{ observation.date_observation }}</td>
-            <td>{{ observation.heure_observation }}</td>
             <td>{{ observation.libelle_ecoulement }}</td>
             <td>{{ observation.emoji }}</td>
             <td>{{ observation.code_campagne }}</td>

@@ -1,35 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Observation Date and Station</title>
+    <title>Sélectionner Date et Station d'Observation</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='select_observation.css') }}">
 </head>
 <body>
     <section id="header">
         <a href="{{ url_for('home') }}">
-          <div class="loader">
-            <span>riverflow</span>
-            <span>riverflow</span>
-          </div>
+            <div class="loader">
+                <span>riverflow</span>
+                <span>riverflow</span>
+            </div>
         </a>
-        
         <div class="menu-toggle" id="menu-icon">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-        <script>
-            document.getElementById('menu-icon').addEventListener('click', function() {
-                var navbar = document.getElementById('navbar');
-                if (navbar.style.display === "flex") {
-                    navbar.style.display = "none";
-                } else {
-                    navbar.style.display = "flex";
-                }
-            });
-        </script>
         <ul id="navbar">
             <li><a href="{{ url_for('home') }}" class="lien">Accueil</a></li>
             <li><a href="#" class="lien">Comparaison</a></li>
@@ -39,25 +28,26 @@
     </section>
 
     <div class="form-container">
-        <h1>Sélectionner la date et la station</h1>
+        <h1>Sélectionner les Dates et la Station</h1>
         <form method="post">
             <div class="form-group">
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
+                <label for="date_min">Date de début:</label>
+                <input type="date" id="date_min" name="date_min" required>
             </div>
-            
+            <div class="form-group">
+                <label for="date_max">Date de fin:</label>
+                <input type="date" id="date_max" name="date_max" required>
+            </div>
             <div class="form-group">
                 <label for="station_id">Station:</label>
-                <select class="station-lie" id="station_id" name="station_id" required>
+                <select id="station_id" name="station_id" required>
                     {% for station in stations %}
                     <option value="{{ station.code_station }}">{{ station.libelle_station }}</option>
                     {% endfor %}
                 </select>
             </div>
-
-            <button>Submit</button>
+            <button type="submit">Valider</button>
         </form>
-        
     </div>
 
     <footer>

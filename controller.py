@@ -1,7 +1,8 @@
-from flask import Flask, render_template, abort, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort
 import sqlite3
 import os
 import requests
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -77,16 +78,15 @@ def stations_par_commune(code_commune):
     finally:
         db.close()
 
-
-
 @app.route('/select-observation', methods=['GET', 'POST'])
 def select_observation():
     db = get_db()
     if request.method == 'POST':
-        date = request.form.get('date')
+        date_min = request.form.get('date_min')
+        date_max = request.form.get('date_max')
         station_id = request.form.get('station_id')
-        if date and station_id:
-            return redirect(url_for('fetch_observation', date=date, station_id=station_id))
+        if date_min and date_max and station_id:
+            return redirect(url_for('fetch_observation', date_min=date_min, date_max=date_max, station_id=station_id))
         else:
             return "Date ou station manquante", 400
 
@@ -96,38 +96,39 @@ def select_observation():
 
 @app.route('/fetch-observation')
 def fetch_observation():
-    date = request.args.get('date')
-    station_id = request.args.get('station_id')
-    observations = get_observation_data(station_id, date)
+    date_min = request.args.get('date_min')
+    date_max = request.args.get('date_max')
+    station_id = request.args.get('station_id', '').strip().replace(" ", "")
     
-    # Ajout de la logique pour attribuer un emoji en fonction de l'état de l'écoulement
-    for observation in observations:
-        label = observation['libelle_ecoulement']
-        if label == 'Ecoulement visible':
-            observation['emoji'] = '🌊'  # Ecoulement fort
-        elif label == 'Ecoulement visible acceptable':
-            observation['emoji'] = '💧'  # Ecoulement acceptable
-        elif label == 'Ecoulement visible faible':
-            observation['emoji'] = '🌧️'  # Ecoulement faible
-        elif label == 'Ecoulement non visible':
-            observation['emoji'] = '🚫'  # Pas d'écoulement visible
-        elif label == 'Assec':
-            observation['emoji'] = '🏜️'  # Sec
-        elif label == 'Observation impossible':
-            observation['emoji'] = '❓'  # Donnée incertaine
+    observations = get_observation_data(station_id, date_min, date_max)
+    
+    return render_template('display_observation.html', observations=observations, date_min=date_min, date_max=date_max, station_id=station_id)
 
-    return render_template('display_observation.html', observations=observations, date=date, station_id=station_id)
+def get_emoji_for_label(label):
+    emojis = {
+        'Ecoulement visible': '🌊',
+        'Ecoulement visible acceptable': '💧',
+        'Ecoulement visible faible': '🌧️',
+        'Ecoulement non visible': '🚫',
+        'Assec': '🏜️',
+        'Observation impossible': '❓'
+    }
+    return emojis.get(label, '❓')
 
-
-def get_observation_data(station_id, date):
-    observation_url = f"https://hubeau.eaufrance.fr/api/v1/ecoulement/observations?code_station={station_id}&date_observation={date}"
-    response = requests.get(observation_url)
+def get_observation_data(station_id, date_min, date_max):
+    """Récupère les données d'observation pour la station donnée entre les dates spécifiées."""
+    url = f"https://hubeau.eaufrance.fr/api/v1/ecoulement/observations?code_station={station_id}&date_observation_min={date_min}&date_observation_max={date_max}"
+    response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        return data.get('data', [])
-    return []
-
-
+        observations = data.get('data', [])
+        for obs in observations:
+            obs['emoji'] = get_emoji_for_label(obs.get('libelle_ecoulement'))
+        print("Données reçues:", data)
+        return observations
+    else:
+        print(f"Échec de la requête: HTTP {response.status_code}")
+        return []
 
 if __name__ == '__main__':
     app.run(debug=True)
