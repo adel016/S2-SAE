@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sélectionner Date et Station d'Observation</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='select_observation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
 </head>
-<body>
+<body class="body_selec_obs">
     <section id="header">
         <a href="{{ url_for('home') }}">
             <div class="loader">
@@ -19,17 +19,29 @@
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-        <ul id="navbar">
-            <li><a href="{{ url_for('home') }}" class="lien">Accueil</a></li>
-            <li><a href="#" class="lien">Comparaison</a></li>
-            <li><a href="{{ url_for('but') }}" class="lien">À propos</a></li>
-            <li><a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a></li>
-        </ul>
+        <script>
+            document.getElementById('menu-icon').addEventListener('click', function() {
+                var navbar = document.getElementById('navbar');
+                if (navbar.style.display === "flex") {
+                    navbar.style.display = "none";
+                } else {
+                    navbar.style.display = "flex";
+                }
+            });
+        </script>
+        <div>
+            <ul id="navbar">
+              <a href="{{ url_for('home') }}" class="lien">Accueil</a>
+              <a href="#" class="lien">Comparaison</a>
+              <a href="{{ url_for('but') }}" class="lien">À propos</a>
+              <a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a>
+            </ul>
+        </div>
     </section>
 
     <div class="form-container">
-        <h1>Sélectionner les Dates et la Station</h1>
-        <form method="post">
+        <h1 class="h1_tab">Sélectionner les dates et la station</h1>
+        <form method="post">    
             <div class="form-group">
                 <label for="date_min">Date de début:</label>
                 <input type="date" id="date_min" name="date_min" required>
@@ -46,7 +58,7 @@
                     {% endfor %}
                 </select>
             </div>
-            <button type="submit">Valider</button>
+            <button class="btn_obs" type="submit">Valider</button>
         </form>
     </div>
 

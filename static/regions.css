@@ -95,9 +95,9 @@ body{
     width: 100%; /* Utilise toute la largeur de la section pour le centrage */
 }
 
-h1 {
+.h1_tab {
     margin-top: 100px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-size: 2rem;
 }
 

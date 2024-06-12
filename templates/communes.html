@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='communes.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='global.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -36,14 +36,14 @@
         </ul>
     </div>
 </section>
-
+<div class="container-footer">
 <section id="display_communes">
-    <h1>Communes du département {{ libelle_departement }}</h1>
+    <h1 class="h1_tab">Communes du département {{ libelle_departement }}</h1>
     <table border="1">
         <thead>
             <tr>
                 <th>Libellé communes</th>
-                <th>Voir plus de details</th>
+                <th>Voir plus de détails</th>
             </tr>
         </thead>
         <tbody>
@@ -59,6 +59,6 @@
 <footer>
     <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
 </footer>
-
+</div>
 
 {% endblock %}

@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,700&display=swap');
-
 *{
     padding: 0;
     margin: 0;
@@ -8,7 +5,6 @@
     list-style: none;
     box-sizing: none;
 }
-
 
 .body_index{
     font-family: 'Roboto', sans-serif;
@@ -153,56 +149,6 @@ h1 {
   background-color: #eeeeee; /* Légère variation pour le survol */
 }
 
-/* footer */
-footer {
-  text-align: center;
-    padding: 10px;
-    background-color: #f2f2f2;
-    width: 100%;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    z-index: 1000;
-}
- /*riverflow en haut à gauche*/
- 
-.loader {
-  position: relative;
-}
-
-.loader span {
-  position: absolute;
-  color: #fff;
-  transform: translate(-10%, -50%);
-  font-size: 38px;
-}
-
-.loader span:nth-child(1) {
-  color: transparent;
-  -webkit-text-stroke: 0.3px rgb(0, 57, 244);
-}
-
-.loader span:nth-child(2) {
-  color: rgb(0, 4, 255);
-  -webkit-text-stroke: 1px rgb(17, 0, 255);
-  animation: uiverse723 3s ease-in-out infinite;
-}
-
-/*animations des vagues du riverflow */
-
-@keyframes uiverse723 {
-  0%, 100% {
-    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-  }
-
-  50% {
-    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-  }
-}
-
 /* Boutons emojis*/
 
 .recherche{
@@ -274,66 +220,3 @@ footer {
     transform: translate(-10%, 10%) rotate(45deg);
   }
 }
-
-/*NavBar pour les liens hypertexts*/
-
-.lien{
-  font-size: 18px;
-  color: #0039f4;
-  font-family: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  position: relative;
-  border: none;
-  background: none;
-  text-transform: uppercase;
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 400ms;
-  transition-property: color;
-  text-decoration:none;
-  padding: 0px 20px;
-}
-
-.lien:focus,
-.lien:hover {
-  color: #497aff;
-}
-
-.lien:focus:after,
-.lien:hover:after {
-  width: 100%;
-  left: 0%;
-}
-
-.lien:after {
-  content: "";
-  pointer-events: none;
-  bottom: -2px;
-  left: 50%;
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  background-color: #497aff;
-  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  transition-duration: 400ms;
-  transition-property: width, left;
-}
-
-/*Vidéo youtube*/
-.video_container{
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding-top: 56.25%;
-}
-.video{ 
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 75%;
-  height: 75%;
-  padding-left: 13%;
-}
-

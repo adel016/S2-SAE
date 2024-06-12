@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 * {
     padding: 0;
     margin: 0;
@@ -8,7 +6,7 @@
     box-sizing: border-box;
 }
 
-body {
+.body_selec_obs {
     font-family: 'Roboto', sans-serif;
     height: 160vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(img/bg.jpg);
@@ -18,31 +16,6 @@ body {
     background-size: cover;
 }
 
-.section1 {
-    padding: 40px 80px;
-}
-
-.section2 {
-    margin: 40px 0;
-}
-
-/* Bouton */
-.btn {
-    cursor: pointer;
-    padding: 12px;
-    border-radius: 4px;
-    border: 1px solid #fff;
-    color: #000;
-    background-color: #fff;
-    transition: 0.3s;
-    text-align: center;
-    font-weight: 600;
-}
-
-.btn:hover {
-    color: #fff;
-    background-color: #00ddff;
-}
 
 /*navbar responsive*/
 #header {
@@ -124,42 +97,6 @@ body {
     display: flex;
 }
 
-/* Bannière section */
-.image-pleine-largeur {
-    width: 100%;    /* L'image prendra toute la largeur de l'élément parent */
-    height: 600px;  /* Hauteur fixe de l'image */
-    object-fit: cover;  /* L'image couvre l'espace défini sans être déformée */
-}
-
-/* Coeur de l'index */
-.container {
-    display: flex; /* Utilise Flexbox pour disposer les sections côte à côte */
-    margin: 100px 20px; /* Marge de 20px sur les côtés de la fenêtre */
-}
-
-.half-width {
-    flex: 1; /* Chaque section prendra la moitié de l'espace disponible */
-    margin: 0 50px; /* Marge importante entre les deux sections */
-    background-color: #f8f8f8; /* Couleur de fond pour visibilité */
-    padding: 20px; /* Espacement à l'intérieur des sections */
-}
-
-.left-column {
-    display: flex; /* Utilisation de Flexbox à l'intérieur de cette section */
-    flex-direction: column; /* Organisation en colonnes */
-    gap: 20px; /* Espace entre les lignes */
-}
-
-.left-column-item {
-    display: flex; /* Chaque item est aussi un flex container */
-    align-items: center; /* Centrage des éléments verticalement */
-    justify-content: space-between; /* Espace réparti entre les éléments */
-}
-
-.container img {
-    border-radius: 50px; /* Bordures arrondies pour toutes les images */
-}
-
 .form-container {
     width: 50%;
     background-color: #fff;
@@ -188,7 +125,7 @@ select {
     padding: 10px 0px;
 }
 
-button {
+.btn_obs {
     position: relative;
     border-radius: 7px;
     border: 1px solid rgb(61, 106, 255);
@@ -210,7 +147,7 @@ button {
     display: block; /* Make sure the button is a block element */
 }
 
-button:hover {
+.btn_obs:hover {
     background: rgb(61, 106, 255);
     box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
     -webkit-transition: all 0.2s ease-out;
@@ -218,13 +155,13 @@ button:hover {
     transition: all 0.2s ease-out;
 }
 
-button:hover::before {
+.btn_obs:hover::before {
     -webkit-animation: sh02 0.5s 0s linear;
     -moz-animation: sh02 0.5s 0s linear;
     animation: sh02 0.5s 0s linear;
 }
 
-button::before {
+.btn_obs::before {
     content: '';
     display: block;
     width: 0px;
@@ -258,100 +195,9 @@ button::before {
     }
 }
 
-button:active {
+.btn_obs:active {
     box-shadow: 0 0 0 0 transparent;
     -webkit-transition: box-shadow 0.2s ease-in;
     -moz-transition: box-shadow 0.2s ease-in;
     transition: box-shadow 0.2s ease-in;
 }
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #f2f2f2;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/*riverflow en haut à gauche*/
-.loader {
-    position: relative;
-}
-
-.loader span {
-    position: absolute;
-    color: #fff;
-    transform: translate(-10%, -50%);
-    font-size: 38px;
-}
-
-.loader span:nth-child(1) {
-    color: transparent;
-    -webkit-text-stroke: 0.3px rgb(0, 57, 244);
-}
-
-.loader span:nth-child(2) {
-    color: rgb(0, 4, 255);
-    -webkit-text-stroke: 1px rgb(17, 0, 255);
-    animation: uiverse723 3s ease-in-out infinite;
-}
-
-/*animations des vagues du riverflow */
-@keyframes uiverse723 {
-    0%, 100% {
-        clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-        54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-    }
-    50% {
-        clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 
-        51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-    }
-}
-
-  
-  /*NavBar pour les liens hypertexts*/
-  
-  .lien{
-    font-size: 18px;
-    color: #0039f4;
-    font-family: inherit;
-    font-weight: 800;
-    cursor: pointer;
-    position: relative;
-    border: none;
-    background: none;
-    text-transform: uppercase;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 400ms;
-    transition-property: color;
-    text-decoration:none;
-    padding: 0px 20px;
-  }
-  
-  .lien:focus,
-  .lien:hover {
-    color: #497aff;
-  }
-  
-  .lien:focus:after,
-  .lien:hover:after {
-    width: 100%;
-    left: 0%;
-  }
-  
-  .lien:after {
-    content: "";
-    pointer-events: none;
-    bottom: -2px;
-    left: 50%;
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background-color: #497aff;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 400ms;
-    transition-property: width, left;
-  }

@@ -21,6 +21,16 @@
         <span class="bar"></span>
         <span class="bar"></span>
     </div>
+    <script>
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            var navbar = document.getElementById('navbar');
+            if (navbar.style.display === "flex") {
+                navbar.style.display = "none";
+            } else {
+                navbar.style.display = "flex";
+            }
+        });
+    </script>
     <ul id="navbar">
         <a href="{{ url_for('home') }}" class="lien">Accueil</a>
         <a href="#" class="lien">Comparaison</a>
@@ -31,8 +41,8 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-observations">
-<h1 class="h1_obs">Observations des stations</h1>
+<div class="container-footer">
+<h1 class="h1_tab">Observations des stations</h1>
 <p class="date_obs">Date de requête: {{ date_min }} à {{ date_max }}</p>
 <p class="station_obs">Station ID: {{ station_id }}</p>
 <table>
@@ -52,7 +62,7 @@
             <td>{{ observation.libelle_ecoulement }}</td>
             <td>{{ observation.emoji }}</td>
             <td>{{ observation.code_campagne }}</td>
-            <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Lien</a></td>
+            <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Voir cours d'Eau</a></td>
         </tr>
         {% endfor %}
     </tbody>
