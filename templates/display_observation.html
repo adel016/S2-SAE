@@ -40,29 +40,13 @@
         </ul>
     </div>
 </section>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    p{
-        
-    }
-</style>
 {% endblock %}
 
 {% block body %}
-<h1>Observations for Station on Selected Date</h1>
-<p>Date de requête: {{ date }}</p>
-<p>Station ID: {{ station_id }}</p>
+<div class="container-observations">
+<h1 class="h1_obs">Observations des stations</h1>
+<p class="date_obs">Date de requête: {{ date }}</p>
+<p class="station_obs">Station ID: {{ station_id }}</p>
 <table>
     <thead>
         <tr>
@@ -82,7 +66,7 @@
             <td>{{ observation.libelle_ecoulement }}</td>
             <td>{{ observation.emoji }}</td>
             <td>{{ observation.code_campagne }}</td>
-            <td><a href="{{ observation.uri_cours_eau }}">Lien</a></td>
+            <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Lien</a></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -91,5 +75,6 @@
     <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
 </footer>
 </body>
+</div>
 </html>
 {% endblock %}
