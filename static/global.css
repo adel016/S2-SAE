@@ -747,4 +747,49 @@ select {
 }
 
 
+/* index.html banner */
+.banner {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
 
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.overlay h1 {
+  font-size: 7em;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.overlay p {
+  font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .overlay h1 {
+      font-size: 2em;
+  }
+
+  .overlay p {
+      font-size: 1em;
+  }
+}
