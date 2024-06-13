@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphique des Observations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
+</head>
+<body>
+    <section id="header">
+        <a href="{{ url_for('home') }}">
+            <div class="loader">
+                <span>riverflow</span>
+                <span>riverflow</span>
+            </div>
+        </a>
+        <div class="menu-toggle" id="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul id="navbar">
+            <li><a href="{{ url_for('home') }}" class="lien">Accueil</a></li>
+            <li><a href="#" class="lien">Comparaison</a></li>
+            <li><a href="{{ url_for('but') }}" class="lien">À propos</a></li>
+            <li><a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a></li>
+        </ul>
+    </section>
+
+    <div class="container-observations">
+        <h1 class="h1_obs">Graphique des Observations</h1>
+        <img src="{{ url_for('generate_graph', date_min=request.args.get('date_min'), date_max=request.args.get('date_max'), station_id=request.args.get('station_id')) }}" alt="Graphique des observations">
+    </div>
+
+    <footer>
+        <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
+    </footer>
+</body>
+</html>

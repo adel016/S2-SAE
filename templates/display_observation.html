@@ -21,16 +21,6 @@
         <span class="bar"></span>
         <span class="bar"></span>
     </div>
-    <script>
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            var navbar = document.getElementById('navbar');
-            if (navbar.style.display === "flex") {
-                navbar.style.display = "none";
-            } else {
-                navbar.style.display = "flex";
-            }
-        });
-    </script>
     <ul id="navbar">
         <a href="{{ url_for('home') }}" class="lien">Accueil</a>
         <a href="#" class="lien">Comparaison</a>
@@ -41,36 +31,41 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-footer">
-<h1 class="h1_tab">Observations des stations</h1>
-<p class="date_obs">Date de requête: {{ date_min }} à {{ date_max }}</p>
-<p class="station_obs">Station ID: {{ station_id }}</p>
-<table>
-    <thead>
-        <tr>
-            <th>Date d'observation</th>
-            <th>Libellé écoulement</th>
-            <th>Emoji</th>
-            <th>Code Campagne</th>
-            <th>Cours d'eau</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for observation in observations %}
-        <tr>
-            <td>{{ observation.date_observation }}</td>
-            <td>{{ observation.libelle_ecoulement }}</td>
-            <td>{{ observation.emoji }}</td>
-            <td>{{ observation.code_campagne }}</td>
-            <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Voir cours d'Eau</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-<footer>
-    <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
-</footer>
-</body>
+<div class="container-observations">
+    <h1 class="h1_obs">Observations des stations</h1>
+    <p class="date_obs">Date de requête: {{ date_min }} à {{ date_max }}</p>
+    <p class="station_obs">Station ID: {{ station_id }}</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Date d'observation</th>
+                <th>Heure</th>
+                <th>Libellé écoulement</th>
+                <th>Emoji</th>
+                <th>Code Campagne</th>
+                <th>Cours d'eau</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for observation in observations %}
+            <tr>
+                <td>{{ observation.date_observation }}</td>
+                <td>{{ observation.heure_observation }}</td>
+                <td>{{ observation.libelle_ecoulement }}</td>
+                <td>{{ observation.emoji }}</td>
+                <td>{{ observation.code_campagne }}</td>
+                <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Lien</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="{{ url_for('generate_graph') }}" method="get">
+        <input type="hidden" name="date_min" value="{{ date_min }}">
+        <input type="hidden" name="date_max" value="{{ date_max }}">
+        <input type="hidden" name="station_id" value="{{ station_id }}">
+        <button type="submit">Afficher le graphique</button>
+    </form>
 </div>
+</body>
 </html>
 {% endblock %}
