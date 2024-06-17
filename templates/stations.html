@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+<body class="body_region">
 <section id="header">
     <a href="{{ url_for('home') }}">
         <div class="loader">
@@ -53,7 +54,7 @@
             <td>{{ station.libelle_station }}</td>
             <td>{{ station.etat_station }}</td>
             <td>{{ station.date_maj_station }}</td>
-            <td><a class="lien_détails" href="{{ station.uri_cours_eau }}" target="_blank">Voir cours d'Eau</a></td>
+            <td><a class="lien_détails" href="{{ station.uri_cours_eau }}" target="_blank">Voir cours d'eau</a></td>
         </tr>
         {% endfor %}
     </table>
@@ -62,4 +63,5 @@
     <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
 </footer>
 </div>
+</body>
 {% endblock %}

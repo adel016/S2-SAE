@@ -2,9 +2,12 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='news.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
+
 {% endblock %}
 
 {% block body %}
+<body class="body_global">
 <section id="header">
     <a href="{{ url_for('home') }}">
       <div class="loader">
@@ -105,5 +108,5 @@
 <footer>
     <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
 </footer>
-
+</body>
 {% endblock %}

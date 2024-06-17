@@ -1,100 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: none;
-}
-
-.body_index{
-    font-family: 'Roboto', sans-serif;
-    height: 160vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(img/bg.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-}
-
-
-.section1{
-    padding: 40px 80px;
-}
-
-.section2 {
-    margin: 40px 0;
-}
-
-/* Bouton */
-.btn {
-    cursor: pointer;
-    padding: 12px;
-    border-radius: 4px;
-    border: 1px solid #fff;
-    color: #000;
-    background-color: #fff;
-    transition: 0.3s;
-    text-align: center;
-    font-weight: 600;
-}
-
-.btn:hover{
-    color: #fff;
-    background-color: #00ddff;
-}
-
-#header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(250, 252, 255);
-    padding: 20px;
-    box-shadow: 0 3px 20px ;
-    box-shadow: rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    position: sticky;
-    top: 0;
-    left: 0;
-}
-
-#navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#navbar li{
-    padding: 0 20px;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-#navbar li:hover{
-    transform: scale(1.2);
-}
-
-#navbar li a {
-    color: #2774a0;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-#header img{
-    width: 100px;
-    border-radius: 50px;
-}
-
-/* Bannière section */
-
-
-.image-pleine-largeur {
-    width: 100%;    /* L'image prendra toute la largeur de l'élément parent */
-    height: 600px;  /* Hauteur fixe de l'image */
-    object-fit: cover;  /* L'image couvre l'espace défini sans être déformée */
-  }
-  
-
-
 /* Coeur de l'index */
 
 .container {
@@ -219,4 +122,22 @@ h1 {
   100% {
     transform: translate(-10%, 10%) rotate(45deg);
   }
+}
+
+/*Vidéo youtube*/
+.video_container{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 56.25%;
+}
+.video{ 
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 75%;
+  padding-left: 13%;
 }

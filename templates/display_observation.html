@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Observations des Stations</title>
     <link rel="stylesheet" href="{{url_for('static', filename='global.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='display_observations.css')}}">
 </head>
 <body class="body_display_observation">
 <section id="header">
@@ -31,10 +32,17 @@
 {% endblock %}
 
 {% block body %}
+
 <div class="container-observations">
-    <h1 class="h1_obs">Observations des stations</h1>
+    <h1 class="h1_tab">Observations des stations</h1>
     <p class="date_obs">Date de requête: {{ date_min }} à {{ date_max }}</p>
     <p class="station_obs">Station ID: {{ station_id }}</p>
+    <form action="{{ url_for('generate_graph') }}" method="get">
+        <input type="hidden" name="date_min" value="{{ date_min }}">
+        <input type="hidden" name="date_max" value="{{ date_max }}">
+        <input type="hidden" name="station_id" value="{{ station_id }}">
+        <button type="submit"><span class="button_top">Graphique des observations</span></button>
+    </form>
     <table>
         <thead>
             <tr>
@@ -54,17 +62,17 @@
                 <td>{{ observation.libelle_ecoulement }}</td>
                 <td>{{ observation.emoji }}</td>
                 <td>{{ observation.code_campagne }}</td>
-                <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Lien</a></td>
+                <td><a class="lien_détails" href="{{ observation.uri_cours_eau }}">Voir cours d'eau</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form action="{{ url_for('generate_graph') }}" method="get">
-        <input type="hidden" name="date_min" value="{{ date_min }}">
-        <input type="hidden" name="date_max" value="{{ date_max }}">
-        <input type="hidden" name="station_id" value="{{ station_id }}">
-        <button type="submit">Afficher le graphique</button>
-    </form>
+    
+</div>
+<div class="container-footer">
+<footer>
+  <p>Copyright © 2023 RiverFlow. All rights reserved.</p>
+</footer>
 </div>
 </body>
 </html>
