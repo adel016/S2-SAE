@@ -16,8 +16,9 @@
 
 /*riverflow en haut à gauche*/
 
-.loader {
+.loader { 
   position: relative;
+  padding: 20px;
 }
 
 .loader span {
