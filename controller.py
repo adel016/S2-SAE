@@ -59,9 +59,10 @@ def view_departement_details(code_departement):
 
 @app.route('/commune/<code_commune>/stations')
 def stations_par_commune(code_commune):
+    commune_name = request.data_repository.db.query('SELECT libelle_commune FROM communes WHERE code_commune = ?', [code_commune], one=True)
     stations = request.data_repository.get_stations_by_commune(code_commune)
     if stations:
-        return render_template('stations.html', stations=stations, libelle_commune='Nom de la commune')
+        return render_template('stations.html', stations=stations, libelle_commune=commune_name['libelle_commune'])
     else:
         abort(404, description="No stations found for this commune")
 
