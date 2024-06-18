@@ -111,7 +111,7 @@ def get_observation_data(station_id, date_min, date_max):
 def generate_graph(observations, station_id):
     df = pd.DataFrame(observations)
     if df.empty:
-        return "No data available for the given date range and station."
+        return "Pas de donnée pour la station choisi"
     
     flow_levels = {
         'Assec': 0, 'Ecoulement non visible': 1, 'Ecoulement visible faible': 2,
