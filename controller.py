@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, abort, send_file
-import sqlite3
-import os
+from model import Database, DataRepository
 import requests
-from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 from io import BytesIO
@@ -10,11 +8,19 @@ import matplotlib.dates as mdates
 
 app = Flask(__name__)
 
-def get_db():
-    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'ecoulement.db')
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    return conn
+@app.before_request
+def before_request():
+    # Initialise la base de données et le repository de données
+    db = Database()
+    data_repository = DataRepository(db)
+    request.db = db
+    request.data_repository = data_repository
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(request, 'db', None)
+    if db is not None:
+        db.close()
 
 @app.route('/')
 def home():
@@ -30,82 +36,51 @@ def but():
 
 @app.route('/region')
 def view_region():
-    db = get_db()
-    try:
-        cur = db.execute('SELECT * FROM regions')
-        regions = cur.fetchall()
-    finally:
-        db.close()
+    regions = request.data_repository.get_regions()
     return render_template('regions.html', regions=regions)
 
 @app.route('/region/<code_region>')
 def view_region_details(code_region):
-    db = get_db()
-    try:
-        region_query = db.execute('SELECT libelle_region FROM regions WHERE code_region = ?', (code_region,))
-        region_name = region_query.fetchone()
-        if region_name:
-            department_query = db.execute('SELECT * FROM departements WHERE code_region = ?', (code_region,))
-            departements = department_query.fetchall()
-            return render_template('departements.html', departements=departements, libelle_region=region_name['libelle_region'], code_region=code_region)
-        else:
-            return "Region not found", 404
-    finally:
-        db.close()
+    region_name = request.data_repository.db.query('SELECT libelle_region FROM regions WHERE code_region = ?', [code_region], one=True)
+    if region_name:
+        departements = request.data_repository.get_departments_by_region(code_region)
+        return render_template('departements.html', departements=departements, libelle_region=region_name['libelle_region'], code_region=code_region)
+    else:
+        abort(404, description="Region not found")
 
 @app.route('/departement/<code_departement>')
 def view_departement_details(code_departement):
-    db = get_db()
-    try:
-        departement_query = db.execute('SELECT libelle_departement FROM departements WHERE code_departement = ?', (code_departement,))
-        departement_name = departement_query.fetchone()
-        if departement_name:
-            commune_query = db.execute('SELECT * FROM communes WHERE code_departement = ?', (code_departement,))
-            communes = commune_query.fetchall()
-            return render_template('communes.html', communes=communes, libelle_departement=departement_name['libelle_departement'], code_departement=code_departement)
-        else:
-            abort(404, description="Departement not found")
-    finally:
-        db.close()
+    departement_name = request.data_repository.db.query('SELECT libelle_departement FROM departements WHERE code_departement = ?', [code_departement], one=True)
+    if departement_name:
+        communes = request.data_repository.get_communes_by_department(code_departement)
+        return render_template('communes.html', communes=communes, libelle_departement=departement_name['libelle_departement'], code_departement=code_departement)
+    else:
+        abort(404, description="Departement not found")
 
 @app.route('/commune/<code_commune>/stations')
 def stations_par_commune(code_commune):
-    db = get_db()
-    try:
-        cur = db.execute('SELECT code_station, libelle_station, etat_station, date_maj_station, uri_cours_eau FROM stations WHERE code_commune = ?', (code_commune,))
-        stations = cur.fetchall()
-        if not stations:
-            abort(404, description="No stations found for this commune")
+    stations = request.data_repository.get_stations_by_commune(code_commune)
+    if stations:
         return render_template('stations.html', stations=stations, libelle_commune='Nom de la commune')
-    except sqlite3.Error as e:
-        abort(500, description=f"Database error: {e}")
-    finally:
-        db.close()
+    else:
+        abort(404, description="No stations found for this commune")
 
 @app.route('/select-observation', methods=['GET', 'POST'])
 def select_observation():
-    db = get_db()
     if request.method == 'POST':
-        date_min = request.form.get('date_min')
-        date_max = request.form.get('date_max')
-        station_id = request.form.get('station_id')
-        if date_min and date_max and station_id:
-            return redirect(url_for('fetch_observation', date_min=date_min, date_max=date_max, station_id=station_id))
-        else:
-            return "Date ou station manquante", 400
-
-    stations = db.execute('SELECT code_station, libelle_station FROM stations').fetchall()
-    db.close()
+        date_min = request.form['date_min']
+        date_max = request.form['date_max']
+        station_id = request.form['station_id']
+        return redirect(url_for('fetch_observation', date_min=date_min, date_max=date_max, station_id=station_id))
+    stations = request.data_repository.get_station_list()
     return render_template('select_observation.html', stations=stations)
 
 @app.route('/fetch-observation')
 def fetch_observation():
-    date_min = request.args.get('date_min')
-    date_max = request.args.get('date_max')
-    station_id = request.args.get('station_id', '').strip().replace(" ", "")
-    
+    date_min = request.args['date_min']
+    date_max = request.args['date_max']
+    station_id = request.args['station_id']
     observations = get_observation_data(station_id, date_min, date_max)
-    
     return render_template('display_observation.html', observations=observations, date_min=date_min, date_max=date_max, station_id=station_id)
 
 def get_emoji_for_label(label):
@@ -127,12 +102,11 @@ def get_observation_data(station_id, date_min, date_max):
         observations = data.get('data', [])
         for obs in observations:
             obs['emoji'] = get_emoji_for_label(obs.get('libelle_ecoulement'))
-        print("Données reçues:", data)
+        #print("Données reçues:", data)
         return observations
     else:
         print(f"Échec de la requête: HTTP {response.status_code}")
         return []
-
 
 def generate_graph(observations, station_id):
     df = pd.DataFrame(observations)
@@ -147,7 +121,8 @@ def generate_graph(observations, station_id):
     df['flow_category'] = df['libelle_ecoulement'].map(flow_levels)
     
     fig, ax = plt.subplots(figsize=(12, 8))
-    ax.scatter(df['date_observation'], df['flow_category'], c=df['flow_category'], cmap='viridis', marker='o')
+    scatter = ax.scatter(df['date_observation'], df['flow_category'], c=df['flow_category'], cmap='viridis', marker='o')
+
     ax.set_yticks(list(flow_levels.values()))
     ax.set_yticklabels(list(flow_levels.keys()))
     ax.set_xlabel('Date d\'observation')
@@ -158,7 +133,7 @@ def generate_graph(observations, station_id):
     plt.xticks(rotation=45, ha='right')
     plt.grid(True)
     plt.tight_layout()
-    
+
     buf = BytesIO()
     plt.savefig(buf, format='png', bbox_inches='tight')
     buf.seek(0)

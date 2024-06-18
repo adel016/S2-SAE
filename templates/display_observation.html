@@ -24,7 +24,6 @@
     </div>
     <ul id="navbar">
         <a href="{{ url_for('home') }}" class="lien">Accueil</a>
-        <a href="#" class="lien">Comparaison</a>
         <a href="{{ url_for('but') }}" class="lien">À propos</a>
         <a href="{{ url_for('derniere_nouvelle') }}" class="lien">Articles</a>
     </ul>
@@ -47,7 +46,6 @@
         <thead>
             <tr>
                 <th>Date d'observation</th>
-                <th>Heure</th>
                 <th>Libellé écoulement</th>
                 <th>Emoji</th>
                 <th>Code Campagne</th>
@@ -58,7 +56,6 @@
             {% for observation in observations %}
             <tr>
                 <td>{{ observation.date_observation }}</td>
-                <td>{{ observation.heure_observation }}</td>
                 <td>{{ observation.libelle_ecoulement }}</td>
                 <td>{{ observation.emoji }}</td>
                 <td>{{ observation.code_campagne }}</td>
